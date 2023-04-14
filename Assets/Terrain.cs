@@ -8,7 +8,7 @@ public class Terrain : MonoBehaviour
 
     private void Start()
     {
-        Generate(3);
+        Generate(9);
     }
 
     public virtual void Generate(int size)

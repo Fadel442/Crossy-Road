@@ -4,15 +4,32 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] Grass grassPrefab;
+    [SerializeField] Road roadPrefab;
+    [SerializeField] int initialGrassCount = 5;
+    [SerializeField] int horizontalSize;
+    [SerializeField] int backViewDistance = -3;
+    [SerializeField] int fowardViewDistance = 15; 
+    [SerializeField, Range(0, 1)] float treeProbability;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        //create initial Grass pos 4 ---- 4
+        for (int zPos = backViewDistance; zPos < initialGrassCount; zPos++)
+        {
+            var grass = Instantiate(grassPrefab);
+            grass.transform.localPosition = new Vector3(0,0,zPos);
+            grass.SetTreePercentage(zPos < -1 ? 1 : 0);
+            grass.Generate(horizontalSize); 
+        }
+
+        // 4 --- 15
+        for (int zPos = initialGrassCount; zPos < fowardViewDistance; zPos++)
+        {
+            var terrain = Instantiate(roadPrefab);
+            terrain.transform.localPosition = new Vector3(0,0,zPos);
+            terrain.Generate(horizontalSize); 
+        }
+
     }
 }
