@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System;
+using UnityEngine.Events;
 
 public class Doragon : MonoBehaviour
 {
     [SerializeField, Range(0, 1)] float moveDuration = 0.1f;
     [SerializeField, Range(0, 1)] float jumpHeight = 0.5f;
+
+    public UnityEvent<Vector3> OnJumpEnd;
     bool isMoving;
     void Update()
     {
@@ -41,8 +44,17 @@ public class Doragon : MonoBehaviour
 
     private void Move(Vector3 direction)
     {
-        transform.DOJump(transform.position + direction, jumpHeight, 1,  moveDuration);
+        transform.DOJump(
+            transform.position + direction, 
+            jumpHeight, 1,  
+            moveDuration).
+            onComplete = BroadcastPositionOnJumpEnd;
 
         transform.forward = direction;
+    }
+
+    private void BroadcastPositionOnJumpEnd()
+    {
+        OnJumpEnd.Invoke(transform.position); 
     }
 }
