@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Events;
 
-public class Doragon : MonoBehaviour
+public class Amongus : MonoBehaviour
 {
     [SerializeField, Range(0, 1)] float moveDuration = 0.1f;
     [SerializeField, Range(0, 1)] float jumpHeight = 0.5f;
@@ -12,7 +12,7 @@ public class Doragon : MonoBehaviour
     [SerializeField] int rightMoveLimit;
     [SerializeField] int backMoveLimit;
     public UnityEvent<Vector3> OnJumpEnd;
-    public bool isDie;
+    private bool isDie = false;
     void Update()
     {
         if (isDie)
@@ -90,21 +90,9 @@ public class Doragon : MonoBehaviour
             Debug.Log(isDie);
             return;
         }
-        
         transform.DOScaleY(0.1f, 0.2f);
         isDie = true;
     }
 
-    // private void OnTriggerEnter(Collider other)
-    // {
-    //     isDie = true;
-        
-    //     if (isDie == true)
-    //     {
-
-    //         Debug.Log(isDie);
-    //         return;
-    //     }
-
-    // }
 }
+

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
-    [SerializeField] List<Terrain> terrainList;
+     [SerializeField] List<Terrain> terrainList;
     [SerializeField] int initialGrassCount = 5;
     [SerializeField] int horizontalSize;
     [SerializeField] int backViewDistance = -3;
-    [SerializeField] int forwardViewDistance = 15;
+    [SerializeField] int forwardViewDistance = 13;
 
     Dictionary<int, Terrain> activeTerrainDict = new Dictionary<int, Terrain>(20);
 
@@ -115,6 +115,4 @@ public class PlayManager : MonoBehaviour
 
         OnUpdateTerrainLimit.Invoke(horizontalSize, travelDistance + backViewDistance);
     }
-
-
 }
