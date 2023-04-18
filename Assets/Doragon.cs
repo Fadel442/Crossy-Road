@@ -12,7 +12,7 @@ public class Doragon : MonoBehaviour
     [SerializeField] int rightMoveLimit;
     [SerializeField] int backMoveLimit;
     public UnityEvent<Vector3> OnJumpEnd;
-    public bool isDie;
+    private bool isDie = false;
     void Update()
     {
         if (isDie)
@@ -95,16 +95,5 @@ public class Doragon : MonoBehaviour
         isDie = true;
     }
 
-    // private void OnTriggerEnter(Collider other)
-    // {
-    //     isDie = true;
-        
-    //     if (isDie == true)
-    //     {
-
-    //         Debug.Log(isDie);
-    //         return;
-    //     }
-
-    // }
+  
 }
