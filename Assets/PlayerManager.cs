@@ -5,84 +5,76 @@ using UnityEngine.Events;
 
 public class PlayerManager : MonoBehaviour
 {
-    [SerializeField] Doragon doragon;
-    [SerializeField] List<Terrain> terrainList;
-
+     [SerializeField] List<Terrain> terrainList;
     [SerializeField] int initialGrassCount = 5;
     [SerializeField] int horizontalSize;
     [SerializeField] int backViewDistance = -3;
-    [SerializeField] int fowardViewDistance = 15; 
-    [SerializeField, Range(0, 1)] float treeProbability;
+    [SerializeField] int forwardViewDistance = 13;
 
     Dictionary<int, Terrain> activeTerrainDict = new Dictionary<int, Terrain>(20);
+
     [SerializeField] private int travelDistance;
 
     public UnityEvent<int, int> OnUpdateTerrainLimit;
 
     private void Start()
     {
-
-        //create initial Grass pos 4 ---- 4
+        // generate initial grass
         for (int zPos = backViewDistance; zPos < initialGrassCount; zPos++)
         {
             var terrain = Instantiate(terrainList[0]);
 
             terrain.transform.position = new Vector3(0, 0, zPos);
-            
+
             if (terrain is Grass grass)
             {
-                grass.SetTreePercentage(zPos < -1 ? 1 : 0);
+                grass.SetTreeProbability(zPos < -1 ? 1 : 0);
             }
 
-            terrain.Generate(horizontalSize); 
+            terrain.Generate(horizontalSize);
 
             activeTerrainDict[zPos] = terrain;
+
         }
 
-        // 4 --- 15
-        for (int zPos = initialGrassCount; zPos < fowardViewDistance; zPos++)
+        // generate after initiate grass
+        for (int zPos = initialGrassCount; zPos < forwardViewDistance; zPos++)
         {
-            var terrain = SpawnRandomTerrain(zPos);
-
-            terrain.Generate(horizontalSize); 
-
-            activeTerrainDict[zPos] = terrain; 
+            SpawnRandomTerrain(zPos);
         }
-        for (int zPos = initialGrassCount; zPos < fowardViewDistance; zPos++)
-        {
-        SpawnRandomTerrain(0);    
-        }
+
+        OnUpdateTerrainLimit.Invoke(horizontalSize, travelDistance + backViewDistance);
     }
 
     private Terrain SpawnRandomTerrain(int zPos)
     {
-        Terrain terrainCheck = null;
+        Terrain comparatorTerrain = null;
         int randomIndex;
 
         for (int z = -1; z >= -3; z--)
         {
             var checkPos = zPos + z;
-
-            if (terrainCheck == null)
+            if (comparatorTerrain == null)
             {
-                terrainCheck = activeTerrainDict[checkPos];
+                comparatorTerrain = activeTerrainDict[checkPos];
                 continue;
             }
-            else if (terrainCheck.GetType() != activeTerrainDict[checkPos].GetType())
+            else if (comparatorTerrain.GetType() != activeTerrainDict[checkPos].GetType())
             {
                 randomIndex = Random.Range(0, terrainList.Count);
                 return SpawnTerrain(terrainList[randomIndex], zPos);
+
             }
             else
             {
                 continue;
             }
         }
-        
+
         var candidateTerrain = new List<Terrain>(terrainList);
         for (int i = 0; i < candidateTerrain.Count; i++)
         {
-            if (terrainCheck.GetType() == candidateTerrain[i].GetType())
+            if (comparatorTerrain.GetType() == candidateTerrain[i].GetType())
             {
                 candidateTerrain.Remove(candidateTerrain[i]);
                 break;
@@ -91,6 +83,7 @@ public class PlayerManager : MonoBehaviour
 
         randomIndex = Random.Range(0, candidateTerrain.Count);
         return SpawnTerrain(candidateTerrain[randomIndex], zPos);
+
     }
 
     public Terrain SpawnTerrain(Terrain terrain, int zPos)
@@ -117,7 +110,7 @@ public class PlayerManager : MonoBehaviour
         Destroy(activeTerrainDict[destroyPos].gameObject);
         activeTerrainDict.Remove(destroyPos);
 
-        var spawnPosition = travelDistance - 1 + fowardViewDistance;
+        var spawnPosition = travelDistance - 1 + forwardViewDistance;
         SpawnRandomTerrain(spawnPosition);
 
         OnUpdateTerrainLimit.Invoke(horizontalSize, travelDistance + backViewDistance);
