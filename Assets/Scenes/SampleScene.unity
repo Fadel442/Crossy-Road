@@ -1170,6 +1170,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveDuration: 0.1
   jumpHeight: 0.5
+  leftMoveLimit: 0
+  rightMoveLimit: 0
+  backMoveLimit: 0
   OnJumpEnd:
     m_PersistentCalls:
       m_Calls:
@@ -2434,3 +2437,60 @@ Transform:
   m_Father: {fileID: 208762472}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1479758004107756619
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1406471939720182019, guid: 2d552540178b45447bf2a2ade4158496, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406471939720182019, guid: 2d552540178b45447bf2a2ade4158496, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406471939720182019, guid: 2d552540178b45447bf2a2ade4158496, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406471939720182019, guid: 2d552540178b45447bf2a2ade4158496, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406471939720182019, guid: 2d552540178b45447bf2a2ade4158496, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406471939720182019, guid: 2d552540178b45447bf2a2ade4158496, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406471939720182019, guid: 2d552540178b45447bf2a2ade4158496, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406471939720182019, guid: 2d552540178b45447bf2a2ade4158496, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406471939720182019, guid: 2d552540178b45447bf2a2ade4158496, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406471939720182019, guid: 2d552540178b45447bf2a2ade4158496, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406471939720182019, guid: 2d552540178b45447bf2a2ade4158496, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600892879283856688, guid: 2d552540178b45447bf2a2ade4158496, type: 3}
+      propertyPath: m_Name
+      value: Car
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2d552540178b45447bf2a2ade4158496, type: 3}
