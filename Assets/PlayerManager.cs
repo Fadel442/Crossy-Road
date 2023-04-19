@@ -19,6 +19,7 @@ public class PlayerManager : MonoBehaviour
 
     public UnityEvent<int, int> OnUpdateTerrainLimit;
     public UnityEvent<int> OnScoreUpdate;
+  
 
     private void Start()
     {
@@ -46,8 +47,9 @@ public class PlayerManager : MonoBehaviour
             SpawnRandomTerrain(zPos);
         }
 
-        OnUpdateTerrainLimit.Invoke(horizontalSize, travelDistance + backViewDistance);
+        OnUpdateTerrainLimit.Invoke(horizontalSize, travelDistance + backViewDistance);  
     }
+
 
     private Terrain SpawnRandomTerrain(int zPos)
     {

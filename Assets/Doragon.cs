@@ -18,7 +18,7 @@ public class Doragon : MonoBehaviour
     private bool isMoveable = false;
     void Update()
     {
-        if (isMoveable)
+        if (isMoveable == false)
         {
             return;
         }
@@ -73,6 +73,11 @@ public class Doragon : MonoBehaviour
         transform.forward = direction;
     }
 
+    public void SetMoveable(bool value)
+    {
+        isMoveable = value;
+    }
+
 
     public void UpdateMoveLimit(int horizontalSize, int backLimit)
     {
@@ -90,14 +95,15 @@ public class Doragon : MonoBehaviour
     {
         if(other.CompareTag("Car"))
         {
-            if (isMoveable == true)
+            if (transform.localScale.y == 0.1f)
             {
-                //Debug.Log(isDie);
+                
                 return;
             }
             
-            transform.DOScaleY(0.1f, 0.2f);
-            isMoveable = true;
+            transform.DOScale(new Vector3(2, 0.1f, 2.5f), 0.2f);
+            
+            isMoveable = false;
             Invoke("Die", 3);
         }
         else if(other.CompareTag("Coin"))
