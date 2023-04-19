@@ -73,6 +73,11 @@ public class Doragon : MonoBehaviour
         transform.forward = direction;
     }
 
+    public void SetMoveable(bool value)
+    {
+        isMoveable = value;
+    }
+
 
     public void UpdateMoveLimit(int horizontalSize, int backLimit)
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
-    [SerializeField, Range(0, 10)] float speed;
+    [SerializeField, Range(0, 50)] float speed = 20;
 
     private void Update()
     {

@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] int horizontalSize;
     [SerializeField] int backViewDistance = -3;
     [SerializeField] int forwardViewDistance = 13;
+    [SerializeField] float initialTimer = 10;
 
     Dictionary<int, Terrain> activeTerrainDict = new Dictionary<int, Terrain>(20);
 
@@ -19,6 +20,8 @@ public class PlayerManager : MonoBehaviour
 
     public UnityEvent<int, int> OnUpdateTerrainLimit;
     public UnityEvent<int> OnScoreUpdate;
+    public UnityEvent OnTimesUp;
+  
 
     private void Start()
     {
@@ -46,8 +49,9 @@ public class PlayerManager : MonoBehaviour
             SpawnRandomTerrain(zPos);
         }
 
-        OnUpdateTerrainLimit.Invoke(horizontalSize, travelDistance + backViewDistance);
+        OnUpdateTerrainLimit.Invoke(horizontalSize, travelDistance + backViewDistance);  
     }
+
 
     private Terrain SpawnRandomTerrain(int zPos)
     {
