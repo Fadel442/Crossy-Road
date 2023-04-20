@@ -17,7 +17,7 @@ public class Road : Terrain
         if (Random.value > 0.05f)
         {
             carSpawnPosition = new Vector3(
-                horizontalSize / 2 + 3,
+                horizontalSize / 2 + 10,
                  0,
                  this.transform.position.z);
 
@@ -26,7 +26,7 @@ public class Road : Terrain
         else
         {
             carSpawnPosition = new Vector3(
-                -(horizontalSize / 2 + 3),
+                -(horizontalSize / 2 + 10),
                 0,
                 this.transform.position.z);
 
@@ -46,7 +46,7 @@ public class Road : Terrain
                 carSpawnPosition,
                 carRotation);
 
-            car.SetUpDistanceLimit(horizontalSize + 6);
+            car.SetUpDistanceLimit(horizontalSize + 30);
 
             return;
         }
