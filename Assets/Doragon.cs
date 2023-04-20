@@ -11,9 +11,13 @@ public class Doragon : MonoBehaviour
     [SerializeField] int leftMoveLimit;
     [SerializeField] int rightMoveLimit;
     [SerializeField] int backMoveLimit;
+    [SerializeField] AudioSource sfxJump;
+    AudioSource sfxDeath;
+
     public UnityEvent<Vector3> OnJumpEnd;
     public UnityEvent<int> OnGetCoin;
     public UnityEvent OncarCollision;
+    public UnityEvent AudioManagement;
     public UnityEvent OnDie;
 
     private bool isMoveable = false;
@@ -31,18 +35,22 @@ public class Doragon : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             direction += Vector3.forward;
+            sfxJump.Play();
         }
         else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             direction += Vector3.back;
+            sfxJump.Play();
         }
         else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
             direction += Vector3.right;
+            sfxJump.Play();
         }
         else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
             direction += Vector3.left;
+            sfxJump.Play();
         }
 
         if (direction == Vector3.zero)
@@ -53,6 +61,7 @@ public class Doragon : MonoBehaviour
 
     public void Move(Vector3 direction)
     {
+
         var targetPosition = transform.position + direction;
 
         if (targetPosition.x < leftMoveLimit ||
@@ -105,6 +114,7 @@ public class Doragon : MonoBehaviour
             transform.DOScale(new Vector3(2, 0.1f, 2.5f), 0.2f);
             
             isMoveable = false;
+            AudioManagement.Invoke();
             OncarCollision.Invoke();
             Invoke("Die", 3);
         }
