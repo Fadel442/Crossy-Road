@@ -13,6 +13,7 @@ public class Doragon : MonoBehaviour
     [SerializeField] int backMoveLimit;
     public UnityEvent<Vector3> OnJumpEnd;
     public UnityEvent<int> OnGetCoin;
+    public UnityEvent OncarCollision;
     public UnityEvent OnDie;
 
     private bool isMoveable = false;
@@ -104,6 +105,7 @@ public class Doragon : MonoBehaviour
             transform.DOScale(new Vector3(2, 0.1f, 2.5f), 0.2f);
             
             isMoveable = false;
+            OncarCollision.Invoke();
             Invoke("Die", 3);
         }
         else if(other.CompareTag("Coin"))
