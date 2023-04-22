@@ -167,4 +167,8 @@ public class PlayerManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    public void Menu()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
 }

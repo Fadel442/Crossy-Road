@@ -20,7 +20,7 @@ public class Doragon : MonoBehaviour
     public UnityEvent AudioManagement;
     public UnityEvent OnDie;
 
-    private bool isMoveable = false;
+    public bool isMoveable = false;
     void Update()
     {
         if (isMoveable == false)
