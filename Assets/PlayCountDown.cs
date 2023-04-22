@@ -13,6 +13,9 @@ public class PlayCountDown : MonoBehaviour
     private void Start()
     {
         OnStart.Invoke();
+
+        // Time.timeScale = 1;
+
         var sequence = DOTween.Sequence();
         tmpText.transform.localScale = Vector3.zero;
         tmpText.text = "3";
@@ -40,6 +43,7 @@ public class PlayCountDown : MonoBehaviour
                 tmpText.transform.localScale = Vector3.zero;
                 tmpText.text = "Go";
                 OnEnd.Invoke();
+                
             }));
     }
 }
