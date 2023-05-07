@@ -21,7 +21,7 @@ public class BirdSpawner : MonoBehaviour
         {
             bird.gameObject.SetActive(true);
             bird.transform.position = doragon.transform.position + new Vector3(0, 0, 13);
-            doragon.SetMoveable(false);
+            //doragon.SetMoveable(false);
         }
 
         timer -= Time.deltaTime;        
